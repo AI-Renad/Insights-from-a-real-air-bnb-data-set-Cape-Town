@@ -158,5 +158,5 @@ m.save('Cape_Town_heatmap.html')
 
 # If you're using Jupyter Notebook, you can display the map directly in the notebook:
 m
-![image](https://github.com/user-attachments/assets/c2873337-2abd-49ea-85ac-3730a958bfa8)
+![image](https://github.com/user-attachments/assets/38eaf543-8682-4f0f-8d20-1f055f209559)
 
