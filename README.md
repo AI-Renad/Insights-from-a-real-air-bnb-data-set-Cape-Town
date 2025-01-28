@@ -45,7 +45,7 @@ print(busiest_dates.head())
 ```
 ![image](https://github.com/user-attachments/assets/34d520cc-8bb9-43a3-a7ee-6cb024d094d9)
 
-## 4 Plot a bar graph to show availability percentage
+## 4 Plot a bar graph to show availability percentage 📈
 ---
 ```python
 import matplotlib.pyplot as plt
@@ -57,7 +57,7 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/f3a57056-07b8-4934-b4ec-ae2093305a4e)
 
-## 5 Plot the busiest day
+## 5 Plot the busiest day 🍻
 ---
 ```python
 busiest_dates.head(10).plot(kind='bar', color='orange')
@@ -68,7 +68,7 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/dcc1e4b1-094d-4f09-9540-545d50563d81)
 
-## 📄 Download listings dataset of Hawaii from
+##  Download listings dataset of Cape Town from 🧑‍💻
 [listings.csv](https://github.com/user-attachments/files/18569483/listings.csv)
 ```python
 import pandas as pd
@@ -78,7 +78,7 @@ listings = pd.read_csv('/content/listings (1).csv')
 ```python
 listings.columns
 ```
-## ✅ Room type and price is given seperately
+##  Room type and price is given seperately 🧑‍💻
 ---
 Let`s Combine and visualize them
 ```python
@@ -96,7 +96,7 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/94fe7cce-a000-49df-b118-104e4f4808af)
 
-## ✅ Which are the top 10 neighborhoods with the most listings?
+##  Which are the top 10 neighborhoods with the most listings? ⚡️
 ---
 Let`s Combine and visualize them
 ```python
@@ -114,7 +114,7 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/84da4979-5a4d-410b-b7a2-869cb5aa5f0a)
 
-## ✅ Geographical Distribution of Listings (Price Colored)
+##  Geographical Distribution of Listings (Price Colored) 🌐
 ---
 Let`s Combine and visualize them
 ```python
@@ -131,8 +131,8 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/aafbe25b-550f-483f-be40-6d9c3c880615)
 
-## Let us see the listings on a real map
-* Hotter Areas (Red/Yellow): High Density: The areas that appear in red or yellow (the "hot" colors) indicate higher density or concentration of listings. This means there are more listings in these areas. Popular Locations: These regions might be more popular or in high demand. It could be near tourist attractions, popular neighborhoods, or central areas in Hawaii where people tend to stay more often. Colder Areas (Green/Blue):
+## Let us see the listings on a real map 📌
+* Hotter Areas (Red/Yellow): High Density: The areas that appear in red or yellow (the "hot" colors) indicate higher density or concentration of listings. This means there are more listings in these areas. Popular Locations: These regions might be more popular or in high demand. It could be near tourist attractions, popular neighborhoods, or central areas in Cape Town where people tend to stay more often. Colder Areas (Green/Blue):
 
 * Low Density: Areas with blue or green (the "cold" colors) indicate a lower concentration of listings. These regions have fewer listings available. Less Popular Locations: These areas might be less popular or further from key attractions. If you're looking at pricing or other factors, lower density could imply less competition in these regions, which might indicate more affordable areas or less tourist traffic. Density Patterns:
 
@@ -144,11 +144,11 @@ import pandas as pd
 
 hawaii_data = listings[['latitude', 'longitude', 'price']]  # Example, you may add more columns
 
-# Create a base map centered around Hawaii
-m = folium.Map(location=[20.7967, -156.3319], zoom_start=10)
+# Create a base map centered around Cape Town
+m = folium.Map(location=[-33.92274521720411, 18.45732282497808], zoom_start=10)
 
 # Prepare the data for the heatmap
-heat_data = [[row['latitude'], row['longitude']] for index, row in hawaii_data.iterrows()]
+heat_data = [[row['latitude'], row['longitude']] for index, row in Cape_Town_data.iterrows()]
 
 # Add the heatmap to the map
 HeatMap(heat_data).add_to(m)
@@ -160,3 +160,44 @@ m.save('Cape_Town_heatmap.html')
 m
 ![image](https://github.com/user-attachments/assets/38eaf543-8682-4f0f-8d20-1f055f209559)
 
+## What is the average price for listings across different neighborhoods? 🏘️
+```python
+average_price_by_neighborhood = listings.groupby('neighbourhood')['price'].mean().sort_values(ascending=False)
+print("Average Price by Neighborhood:")
+print(average_price_by_neighborhood.head(10))
+
+# Plot the top 10 neighborhoods by average price
+average_price_by_neighborhood.head(10).plot(kind='bar', color='purple')
+plt.title('Top 10 Neighborhoods by Average Price')
+plt.ylabel('Average Price')
+plt.xlabel('Neighborhood')
+plt.xticks(rotation=90)
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/9b99ce23-5ef4-4164-8747-33778cd3f055)
+
+## What is the correlation between price and the number of reviews for listings? 📊
+```python
+correlation = listings[['price', 'number_of_reviews']].corr().loc['price', 'number_of_reviews']
+print(f"Correlation between price and number of reviews: {correlation}")
+
+# Scatter plot of price vs. number of reviews
+plt.figure(figsize=(8, 6))
+plt.scatter(listings['number_of_reviews'], listings['price'], alpha=0.5, color='blue')
+plt.title('Price vs. Number of Reviews')
+plt.xlabel('Number of Reviews')
+plt.ylabel('Price')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/30c57b64-28ac-40da-9cbf-36f8f288db62)
+---
+## Conclusion 🚀
+
+Through this exploration of Cape Town's Airbnb dataset, we uncovered valuable insights about the availability, pricing trends, and geographical distribution of listings:
+
+* Availability Trends: A significant portion of listings remain unavailable on specific dates, highlighting busy seasons or high-demand periods.
+* Pricing Patterns: Premium neighborhoods like Camps Bay and Clifton boast the highest average prices, reflecting their appeal to tourists seeking luxury stays.
+* Geographical Distribution: Listings are densely concentrated in popular areas, with pricing influencing their geographical spread.
+* Review Dynamics: The relationship between price and reviews suggests that affordability doesn’t always translate to popularity, as reviews often depend on value and guest satisfaction.
+
+This analysis offers insights for hosts to optimize their listings and for travelers to plan stays based on preferences and budgets. Cape Town’s Airbnb market reflects its vibrant mix of luxury, affordability, and accessibility, catering to a diverse range of visitors. 🌍
